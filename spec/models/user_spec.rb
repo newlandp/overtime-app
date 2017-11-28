@@ -16,4 +16,14 @@ RSpec.describe User, type: :model do
       expect(@user).to_not be_valid
     end
   end
+
+  describe "instance methods" do
+    before do
+      @user = User.create(email: "test@test.com", password: "asdfasdf", password_confirmation: "asdfasdf", first_name: "Michael", last_name: "Jordan")
+    end
+
+    it "returns a first name" do
+      expect(@user.full_name).to eq "Michael Jordan"
+    end
+  end
 end
