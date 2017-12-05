@@ -1,4 +1,5 @@
 @import "bootstrap";
+@import "gritter";
 
 .custom-nav {
   margin-top: 15px;
@@ -6,4 +7,8 @@
 
 .date-field {
   width: 200px;
+}
+
+.top-space {
+  margin-top: 5px;
 }
