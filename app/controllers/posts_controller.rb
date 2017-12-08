@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   
   def index
-    @posts = Post.includes(:user)
+    @posts = current_user.posts.includes(:user)
   end
 
   def show

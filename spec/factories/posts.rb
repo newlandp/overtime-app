@@ -10,4 +10,10 @@ FactoryGirl.define do
     rationale "another thing"
     association :user
   end
+
+  factory :another_post, class: Post do
+    date Date.yesterday
+    rationale "some more content"
+    association :user
+  end
 end

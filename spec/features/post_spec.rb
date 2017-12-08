@@ -25,8 +25,20 @@ describe 'navigate' do
 
       visit posts_path
 
-      expect(page).to have_content("something")
-      expect(page).to have_content("another thing")
+      expect(page).to have_content post1.rationale
+      expect(page).to have_content post2.rationale
+    end
+
+    it 'has a scope so that only post creators can see their posts' do
+      post1 = FactoryGirl.create(:post, user: @user)
+      post2 = FactoryGirl.create(:second_post, user: @user)
+      post_from_other_user = FactoryGirl.create(:another_post, user: FactoryGirl.create(:non_authorized_user))
+
+      visit posts_path
+
+      expect(page).to_not have_content post_from_other_user.rationale
+      expect(page).to have_content post1.rationale
+      expect(page).to have_content post2.rationale
     end
   end
 
@@ -80,13 +92,6 @@ describe 'navigate' do
       @post = FactoryGirl.create(:post, user: @user)
     end
 
-    it 'can be reached by clicking edit on the index page' do
-      visit posts_path
-      click_link "edit_#{@post.id}"
-
-      expect(page.status_code).to eq 200
-    end
-
     it 'can be edited' do
       visit edit_post_path(@post.id)
 
@@ -108,19 +113,4 @@ describe 'navigate' do
     end
   end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

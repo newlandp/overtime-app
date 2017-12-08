@@ -1,0 +1,9 @@
+<% if flash[:notice] %>
+  <%= content_tag(:div, flash[:notice], class: "alert alert-primary top-space", role: "alert") %>
+<% end %>
+<% if flash[:alert] %>
+  <%= content_tag(:div, flash[:alert], class: "alert alert-warning top-space", role: "alert") %>
+<% end %>
+<% if flash[:error] %>
+  <%= content_tag(:div, flash[:error], class: "alert alert-danger top-space", role: "alert") %>
+<% end %>

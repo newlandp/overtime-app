@@ -10,12 +10,7 @@
 
   <body>
     <div class="container">
-      <% if flash[:notice] %>
-        <%= content_tag(:div, flash[:notice], class: "alert alert-info top-space") %>
-      <% end %>
-      <% if flash[:alert] %>
-        <%= content_tag(:div, flash[:alert], class: "alert alert-info top-space") %>
-      <% end %>
+      <%= render 'shared/flash_messages' %>
       <div class="row">
         <div class="col-md-12">
           <%= render "shared/nav" %>
