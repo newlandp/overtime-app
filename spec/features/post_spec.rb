@@ -96,6 +96,16 @@ describe 'navigate' do
 
       expect(page).to have_content("edited content")
     end
+
+    it 'cannot be edited by a non authorized user' do
+      logout(:user)
+      non_authorized_user = FactoryGirl.create(:non_authorized_user)
+      login_as(non_authorized_user, scope: :user)
+
+      visit edit_post_path(@post.id)
+
+      expect(page).to have_current_path root_path
+    end
   end
 end
 

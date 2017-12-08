@@ -22,7 +22,7 @@ describe 'navigate' do
 
     it 'cannot be edited by a non admin' do
       logout(:user)
-      user = FactoryGirl.create(:user, email: 'non@admin.com')
+      user = post.user
       login_as(user, scope: :user)
 
       visit edit_post_path(post.id)
