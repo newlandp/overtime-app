@@ -1,9 +1,11 @@
 require 'rails_helper'
 
 describe 'navigate' do
+  let(:user) { FactoryGirl.create(:user) }
+  let(:post) { FactoryGirl.create(:post, user: user) }
+
   before do
-    @user = FactoryGirl.create(:user)
-    login_as(@user, :scope => :user)
+    login_as(user, :scope => :user)
   end
 
   describe 'index' do
@@ -20,8 +22,8 @@ describe 'navigate' do
     end
 
     it "has a list of posts" do
-      post1 = FactoryGirl.create(:post, user: @user)
-      post2 = FactoryGirl.create(:second_post, user: @user)
+      post1 = FactoryGirl.create(:post, user: user)
+      post2 = FactoryGirl.create(:second_post, user: user)
 
       visit posts_path
 
@@ -30,8 +32,8 @@ describe 'navigate' do
     end
 
     it 'has a scope so that only post creators can see their posts' do
-      post1 = FactoryGirl.create(:post, user: @user)
-      post2 = FactoryGirl.create(:second_post, user: @user)
+      post1 = FactoryGirl.create(:post, user: user)
+      post2 = FactoryGirl.create(:second_post, user: user)
       post_from_other_user = FactoryGirl.create(:another_post, user: FactoryGirl.create(:non_authorized_user))
 
       visit posts_path
@@ -53,7 +55,7 @@ describe 'navigate' do
 
   describe 'delete' do
     it 'can be deleted' do
-      post = FactoryGirl.create(:post, user: @user)
+      post
       visit posts_path
 
       click_link "delete_post_#{post.id}_from_index"
@@ -88,12 +90,8 @@ describe 'navigate' do
   end
 
   describe 'edit' do
-    before do
-      @post = FactoryGirl.create(:post, user: @user)
-    end
-
     it 'can be edited' do
-      visit edit_post_path(@post.id)
+      visit edit_post_path(post.id)
 
       fill_in 'post[date]', with: Date.today
       fill_in 'post[rationale]', with: "edited content"
@@ -107,7 +105,7 @@ describe 'navigate' do
       non_authorized_user = FactoryGirl.create(:non_authorized_user)
       login_as(non_authorized_user, scope: :user)
 
-      visit edit_post_path(@post.id)
+      visit edit_post_path(post.id)
 
       expect(page).to have_current_path root_path
     end
