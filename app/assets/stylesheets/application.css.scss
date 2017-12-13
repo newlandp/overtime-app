@@ -12,3 +12,9 @@
 .top-space {
   margin-top: 5px;
 }
+
+.disabled {
+  color: gray;
+  text-decoration: line-through;
+  pointer-events: none;
+}
