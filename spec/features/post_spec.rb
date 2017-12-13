@@ -73,19 +73,13 @@ describe 'navigate' do
     end
 
     it "can be created from new form page" do
-      fill_in 'post[date]', with: Date.today
-      fill_in 'post[rationale]', with: "some rationale"
-      click_on "Save"
-
-      expect(page).to have_content("some rationale")
+      expect { fill_in_post_form }.to change(user.posts, :count).by(1)
     end
 
     it "will have a user associated with it" do
-      fill_in 'post[date]', with: Date.today
-      fill_in 'post[rationale]', with: "User_Association"
-      click_on "Save"
+      fill_in_post_form
 
-      expect(User.last.posts.last.rationale).to eq "User_Association"
+      expect(User.last.posts.last.rationale).to eq "some content"
     end
   end
 
@@ -93,11 +87,9 @@ describe 'navigate' do
     it 'can be edited' do
       visit edit_post_path(post.id)
 
-      fill_in 'post[date]', with: Date.today
-      fill_in 'post[rationale]', with: "edited content"
-      click_on "Save"
+      fill_in_post_form rationale: 'edited content'
 
-      expect(page).to have_content("edited content")
+      expect(post.reload.rationale).to eq("edited content")
     end
 
     it 'cannot be edited by a non authorized user' do
@@ -111,4 +103,13 @@ describe 'navigate' do
     end
   end
 end
+
+def fill_in_post_form rationale: 'some content'
+  fill_in 'post[date]', with: Date.today
+  fill_in 'post[rationale]', with: rationale
+  fill_in 'post[overtime_request]', with: 4.5
+  click_on "Save"
+end
+
+
 

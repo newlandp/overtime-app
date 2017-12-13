@@ -6,9 +6,9 @@ puts "2 users created"
 
 20.times do |post|
   if post % 2 == 0
-    Post.create!(user_id: User.find_by(first_name: "Paul").id, date: Date.today, rationale: "#{post} rationale content")
+    Post.create!(user_id: User.find_by(first_name: "Paul").id, date: Date.today, rationale: "#{post} rationale content", overtime_request: 2.5)
   else
-    Post.create!(user_id: User.find_by(first_name: "Other").id, date: Date.today, rationale: "#{post} rationale content")
+    Post.create!(user_id: User.find_by(first_name: "Other").id, date: Date.today, rationale: "#{post} rationale content", overtime_request: 2.5)
   end
 end
 puts "20 posts have been created"
