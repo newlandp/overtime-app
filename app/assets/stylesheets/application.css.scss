@@ -1,5 +1,7 @@
 @import "bootstrap";
 @import "bourbon";
+@import "entypo";
+@charset "UTF-8";
 
 .custom-nav {
   margin-top: 15px;
@@ -17,4 +19,13 @@
   color: gray;
   text-decoration: line-through;
   pointer-events: none;
+}
+
+.index-icons {
+  font-size: 1.5em;
+}
+
+.index-icons:hover {
+  text-decoration: none;
+  color: black;
 }
