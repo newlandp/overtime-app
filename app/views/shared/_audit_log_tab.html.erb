@@ -1,0 +1,5 @@
+<% if policy(AuditLog).index? %>
+  <li class="nav-item">
+    <%= link_to "Audit Log", audit_logs_path, class: "nav-link #{ active?(audit_logs_path) }" %>
+  </li>
+<% end %>
