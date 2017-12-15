@@ -1,1 +1,17 @@
-<%= render @audit_logs %>
+<h1>Audit Logs Dashboard</h1>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Employee</th>
+      <th scope="col">Week Starting</th>
+      <th scope="col">Confirmed At</th>
+      <th scope="col">Status</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: "audit_log", collection: @audit_logs %>
+  </tbody>
+</table>
