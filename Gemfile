@@ -44,3 +44,4 @@ gem 'pundit', '~> 1.1'
 gem 'entypo-rails'
 gem 'twilio-ruby', '~> 5.5.1'
 gem 'dotenv-rails', groups: [:development, :test]
+gem 'kaminari', '~> 1.1', '>= 1.1.1'
