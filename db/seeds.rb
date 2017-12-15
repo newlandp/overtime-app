@@ -42,12 +42,12 @@ puts "20 posts have been created"
 20.times do |audit_log|
   if audit_log % 2 == 0
     AuditLog.create!(user_id: User.find_by(first_name: "Paul").id,
-                 status: 0,
-                 start_date: (Date.today - 6.days))
+                     status: 0,
+                     start_date: (Date.today - 6.days))
   else
     AuditLog.create!(user_id: User.find_by(first_name: "Other").id,
-                 status: 0,
-                 start_date: (Date.today - 6.days))
+                     status: 0,
+                     start_date: (Date.today - 6.days))
   end
 end
 
