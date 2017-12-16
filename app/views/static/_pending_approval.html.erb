@@ -10,10 +10,10 @@
       <span class="pending-details">Rationale:</span> <%= truncate pending_approval.rationale, length: 42 %>
     </p>
     <div class="row">
-      <div class="col-md-6 column">
+      <div class="col-xl-6 column pending_buttons">
         <%= link_to 'Approve', approve_post_path(pending_approval.id), class: 'btn btn-success btn-block', id: "approve_#{pending_approval.id}" %>
       </div>
-      <div class="col-md-6 column">
+      <div class="col-xl-6 column pending_buttons">
         <%= link_to 'Review', edit_post_path(pending_approval.id), class: 'btn btn-warning btn-block' %>
       </div>
     </div>
