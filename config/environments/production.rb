@@ -39,4 +39,6 @@ Rails.application.configure do
   config.serve_static_assets = true
 
   config.assets.digest = true
+
+  config.action_mailer.default_url_options = { host: 'newlandp-overtime.herokuapp.com' }
 end
