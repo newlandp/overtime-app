@@ -9,6 +9,10 @@ class AuditLog < ApplicationRecord
 
   before_update :set_end_date, if: :confirmed?
 
+  def self.by_start_date
+    order(start_date: :desc)
+  end
+
   private
 
   def set_end_date
