@@ -5,10 +5,10 @@
 <% if current_user %>
   <ul class="custom-nav nav nav-tabs">
     <li class="nav-item">
-      <%= link_to "Home", root_path, class: "nav-link #{ active?(root_path) }" %>
+      <%= link_to "", root_path, class: "icon-home nav-icon nav-link #{ active?(root_path) }" %>
     </li>
     <li class="nav-item">
-      <%= link_to "Time Entries", posts_path, class: "nav-link #{ active?(posts_path) }" %>
+      <%= link_to "Entries", posts_path, class: "nav-link #{ active?(posts_path) }" %>
     </li>
     <%= render 'shared/audit_log_tab' %>
     <li class="nav-item">
