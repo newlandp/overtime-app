@@ -46,6 +46,7 @@ describe 'navigate' do
 
   describe 'new' do
     it 'has a link on the homepage' do
+      user.update!(type: 'Employee')
       visit root_path
 
       click_link 'new_post_from_nav'
