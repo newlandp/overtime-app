@@ -17,6 +17,6 @@
         </div>
       </div>
     </div>
-    <%= javascript_pack_tag 'post_app' %>
+    <%= javascript_pack_tag 'post_app' if current_page?(posts_path) %>  
   </body>
 </html>
