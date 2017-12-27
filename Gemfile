@@ -46,3 +46,5 @@ gem 'twilio-ruby', '~> 5.5.1'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'kaminari', '~> 1.1', '>= 1.1.1'
 gem 'newrelic_rpm'
+gem 'webpacker', '~> 3.0'
+gem 'react_on_rails', '10.0.2'
