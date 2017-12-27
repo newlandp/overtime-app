@@ -1,5 +1,8 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy, :approve]
+
+  def react
+  end
   
   def index
     @posts = Post.posts_by(current_user).page(params[:page]).per(5)
