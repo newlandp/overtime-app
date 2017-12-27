@@ -48,3 +48,4 @@ gem 'kaminari', '~> 1.1', '>= 1.1.1'
 gem 'newrelic_rpm'
 gem 'webpacker', '~> 3.0'
 gem 'react_on_rails', '10.0.2'
+gem 'mini_racer', platforms: :ruby
