@@ -5,11 +5,12 @@ class PostsController < ApplicationController
     @posts = Post.posts_by(current_user).page(params[:page]).per(5)
   end
 
-  # REFACTOR TODO
+  # TODO: REFACTOR
   def index_json
     total_count = current_user.posts.count
     @posts = current_user.posts.limit(params[:limit]).offset(params[:offset])
-    render json: { posts: @posts, total_count: total_count }
+    posts = @posts.as_json(include: :user)
+    render json: { posts: posts, total_count: total_count }
   end
 
   def show
