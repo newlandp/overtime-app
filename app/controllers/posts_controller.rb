@@ -5,6 +5,7 @@ class PostsController < ApplicationController
     @posts = Post.posts_by(current_user).page(params[:page]).per(5)
   end
 
+  # REFACTOR
   def index_json
     @posts = Post.posts_by(current_user).page(params[:page]).per(5)
     render json: @posts

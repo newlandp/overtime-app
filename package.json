@@ -12,6 +12,7 @@
     "react-dom": "^16.2.0",
     "react-on-rails": "^10.0.2",
     "react-redux": "^5.0.6",
+    "react-truncate": "^2.3.0",
     "redux": "^3.7.2",
     "redux-promise": "^0.5.3"
   },
