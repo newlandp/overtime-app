@@ -1,0 +1,1 @@
+export const PAGINATION_RANGE = 5;

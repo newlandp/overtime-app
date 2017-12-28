@@ -4,16 +4,15 @@ import { bindActionCreators } from 'redux';
 import { fetchPosts } from '../actions/index';
 import _ from 'lodash';
 import ReactPaginate from 'react-paginate';
+import { PAGINATION_RANGE } from '../constants';
 
 import PostsTable from './posts_table';
-
-const range = 5;
 
 class PostsIndex extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handlePageClick = this.handlePageClick.bind(this);
+    this.handlePaginationClick = this.handlePaginationClick.bind(this);
 
     this.state = {
       offset: 0
@@ -21,19 +20,21 @@ class PostsIndex extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchPosts(range, this.state.offset);
+    this.props.fetchPosts(PAGINATION_RANGE, this.state.offset);
   }
 
-  handlePageClick(data) {
+  handlePaginationClick(data) {
+    const offset = data.selected * PAGINATION_RANGE;
+
     this.setState({
-      offset: (data.selected * range)
+      offset: offset
     }, () => {
-      this.props.fetchPosts(range, this.state.offset);
+      this.props.fetchPosts(PAGINATION_RANGE, this.state.offset);
     });
   }
 
+  // TODO: style pagination
   render() {
-    console.log(this.state.offset);
     return (
       <div>
         <PostsTable posts={this.props.posts} />
@@ -41,10 +42,10 @@ class PostsIndex extends React.Component {
                        nextLabel={"next"}
                        breakLabel={<a href="">...</a>}
                        breakClassName={"break-me"}
-                       pageCount={Math.ceil(this.props.totalPosts / range)}
+                       pageCount={Math.ceil(this.props.totalPosts / PAGINATION_RANGE)}
                        marginPagesDisplayed={1}
-                       pageRangeDisplayed={range}
-                       onPageChange={this.handlePageClick}
+                       pageRangeDisplayed={PAGINATION_RANGE}
+                       onPageChange={this.handlePaginationClick}
                        containerClassName={"pagination"}
                        subContainerClassName={"pages pagination"}
                        activeClassName={"active"} />

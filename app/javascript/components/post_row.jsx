@@ -1,6 +1,7 @@
 import React from 'react';
 import Truncate from 'react-truncate';
 
+// TODO: status label, user name
 export default function PostRow(props) {
   const { post } = props;
   return (
@@ -10,7 +11,7 @@ export default function PostRow(props) {
       <td>{post.date}</td>
       <td>{post.user_id}</td>
       <td>
-        <Truncate lines={2} ellipsis={<span>... <a href={`posts/${post.id}`}>Read more</a></span>}>
+        <Truncate lines={1} ellipsis={<span>... <a href={`posts/${post.id}`}>Read more</a></span>}>
           <a href={`/posts/${post.id}`}>{post.rationale}</a>
         </Truncate>
       </td>
