@@ -7,8 +7,9 @@ class PostsController < ApplicationController
 
   # REFACTOR
   def index_json
-    @posts = Post.posts_by(current_user).page(params[:page]).per(5)
-    render json: @posts
+    total_count = current_user.posts.count
+    @posts = current_user.posts.limit(params[:limit]).offset(params[:offset])
+    render json: { posts: @posts, total_count: total_count }
   end
 
   def show

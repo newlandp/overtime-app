@@ -3,38 +3,51 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchPosts } from '../actions/index';
 import _ from 'lodash';
+import ReactPaginate from 'react-paginate';
 
-import PostRow from './post_row';
+import PostsTable from './posts_table';
+
+const range = 5;
 
 class PostsIndex extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handlePageClick = this.handlePageClick.bind(this);
+
+    this.state = {
+      offset: 0
+    };
+  }
+
   componentDidMount() {
-    this.props.fetchPosts();
+    this.props.fetchPosts(range, this.state.offset);
+  }
+
+  handlePageClick(data) {
+    this.setState({
+      offset: (data.selected * range)
+    }, () => {
+      this.props.fetchPosts(range, this.state.offset);
+    });
   }
 
   render() {
-    const posts = _.map(this.props.posts, post => {
-      return <PostRow post={post} key={post.id} />;
-    });
-
+    console.log(this.state.offset);
     return (
       <div>
-        <table className="table table-hover">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Overtime Requested</th>
-              <th scope="col">Date</th>
-              <th scope="col">User</th>
-              <th scope="col">Rationale</th>
-              <th scope="col">Status</th>
-              <th scope="col"></th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          <tbody id="posts">
-            {posts}
-          </tbody>
-        </table>
+        <PostsTable posts={this.props.posts} />
+        <ReactPaginate previousLabel={"previous"}
+                       nextLabel={"next"}
+                       breakLabel={<a href="">...</a>}
+                       breakClassName={"break-me"}
+                       pageCount={Math.ceil(this.props.totalPosts / range)}
+                       marginPagesDisplayed={1}
+                       pageRangeDisplayed={range}
+                       onPageChange={this.handlePageClick}
+                       containerClassName={"pagination"}
+                       subContainerClassName={"pages pagination"}
+                       activeClassName={"active"} />
       </div>
     );
   }
@@ -42,7 +55,8 @@ class PostsIndex extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    posts: state.posts
+    posts: state.posts,
+    totalPosts: state.totalPosts
   }
 }
 
