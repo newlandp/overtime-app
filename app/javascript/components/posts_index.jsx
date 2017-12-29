@@ -38,8 +38,8 @@ class PostsIndex extends React.Component {
     return (
       <div>
         <PostsTable posts={this.props.posts} />
-        <ReactPaginate previousLabel={"previous"}
-                       nextLabel={"next"}
+        <ReactPaginate previousLabel={"Previous"}
+                       nextLabel={"Next"}
                        breakLabel={<a href="">...</a>}
                        breakClassName={"break-me"}
                        pageCount={Math.ceil(this.props.totalPosts / PAGINATION_RANGE)}
@@ -48,7 +48,13 @@ class PostsIndex extends React.Component {
                        onPageChange={this.handlePaginationClick}
                        containerClassName={"pagination"}
                        subContainerClassName={"pages pagination"}
-                       activeClassName={"active"} />
+                       activeClassName={"active clickable"}
+                       pageClassName={"page-item clickable"}
+                       pageLinkClassName={"page-link clickable"}
+                       previousClassName={"page-item clickable"}
+                       previousLinkClassName={"page-link clickable"}
+                       nextClassName={"page-item clickable"}
+                       nextLinkClassName={"page-link clickable"} />
       </div>
     );
   }
