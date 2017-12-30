@@ -34,6 +34,7 @@ class PostRow extends React.Component {
         <EditPostModal
           showModal={this.state.showEditModal}
           close={this.closeEditModal}
+          post={post}
         />
 
         <th scope="row">{post.id}</th>

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_POSTS, DELETE_POST } from './action_types';
+import { FETCH_POSTS, DELETE_POST, UPDATE_POST } from './action_types';
 
 export function fetchPosts(maxPerPage, offset) {
   const response = axios.get('/posts_json', { params: {
@@ -21,4 +21,10 @@ export function deletePost(id) {
     type: DELETE_POST,
     payload: id
   };
+}
+
+export function updatePost() {
+  return {
+    type: UPDATE_POST
+  }
 }
