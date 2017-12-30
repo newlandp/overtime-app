@@ -9,6 +9,7 @@
     "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
+    "react-bootstrap": "^0.31.5",
     "react-dom": "^16.2.0",
     "react-on-rails": "^10.0.2",
     "react-paginate": "^5.0.0",

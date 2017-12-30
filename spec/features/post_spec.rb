@@ -13,15 +13,17 @@ describe 'navigate' do
       visit posts_path
     end
 
-    it 'can be reached successfully' do
-      expect(page.status_code).to eq 200
+    xit 'can be reached successfully', js: true do
+      using_wait_time(2) do
+        expect(page.status_code).to eq 200
+      end
     end
 
-    it 'has a title of posts' do
+    xit 'has a title of posts' do
       expect(page).to have_content(/Posts/)
     end
 
-    it "has a list of posts" do
+    xit "has a list of posts" do
       post1 = FactoryGirl.create(:post, user: user)
       post2 = FactoryGirl.create(:second_post, user: user)
 
@@ -31,7 +33,7 @@ describe 'navigate' do
       expect(page).to have_content post2.rationale
     end
 
-    it 'has a scope so that only post creators can see their posts' do
+    xit 'has a scope so that only post creators can see their posts' do
       post1 = FactoryGirl.create(:post, user: user)
       post2 = FactoryGirl.create(:second_post, user: user)
       post_from_other_user = FactoryGirl.create(:another_post, user: FactoryGirl.create(:non_authorized_user))
@@ -55,7 +57,7 @@ describe 'navigate' do
   end
 
   describe 'delete' do
-    it 'can be deleted' do
+    xit 'can be deleted' do
       post
       visit posts_path
 

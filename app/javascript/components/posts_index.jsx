@@ -33,10 +33,10 @@ class PostsIndex extends React.Component {
     });
   }
 
-  // TODO: style pagination
   render() {
     return (
       <div>
+        <h1>Posts</h1>
         <PostsTable posts={this.props.posts} />
         <ReactPaginate previousLabel={"Previous"}
                        nextLabel={"Next"}

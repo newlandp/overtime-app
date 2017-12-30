@@ -24,6 +24,8 @@
 
 .index-icons {
   font-size: 1.5em;
+  color: $primary;
+  cursor: pointer;
 }
 
 .index-icons:hover {
@@ -41,5 +43,29 @@
 }
 
 .clickable {
+  cursor: pointer;
+}
+
+.modal-backdrop.fade.in {
+  opacity: .5;
+}
+
+.fade {
+  opacity: 1;
+}
+
+.modal-body {
+  margin-top: 60px;
+}
+
+.modal-content {
+  border-radius: 0;
+}
+
+.modal {
+  top: 10%;
+}
+
+.btn.btn-default {
   cursor: pointer;
 }
