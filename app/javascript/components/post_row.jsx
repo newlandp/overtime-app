@@ -1,11 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Truncate from 'react-truncate';
 
 import StatusBadge from './status_badge';
 import EditPostModal from './edit_post_modal';
+import { deletePost } from '../actions/index';
 
 // TODO: status label
-export default class PostRow extends React.Component {
+class PostRow extends React.Component {
   constructor(props) {
     super(props);
 
@@ -50,9 +52,32 @@ export default class PostRow extends React.Component {
              onClick={this.openEditModal}>
           </i>
         </td>
-        <td><a href={`/posts/${post.id}`} data-method="delete" className="icon-trash index-icons" id={`delete_post_${post.id}_from_index`}></a></td>
+        <td>
+          <i className="icon-trash index-icons"
+            id={`delete_post_${post.id}_from_index`}
+            onClick={ () => this.props.deletePost(post.id) }>
+          </i>
+        </td>
       </tr>
     );
   }
 }
+
+export default connect(null, { deletePost })(PostRow);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

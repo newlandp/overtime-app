@@ -1,9 +1,8 @@
 import axios from 'axios';
-import { FETCH_POSTS } from './action_types';
+import { FETCH_POSTS, DELETE_POST } from './action_types';
 
 export function fetchPosts(maxPerPage, offset) {
-  const response = axios.get('/posts_json', {
-                                              params: {
+  const response = axios.get('/posts_json', { params: {
                                                 limit: maxPerPage,
                                                 offset: offset
                                               }
@@ -12,5 +11,14 @@ export function fetchPosts(maxPerPage, offset) {
   return {
     type: FETCH_POSTS,
     payload: response
+  };
+}
+
+export function deletePost(id) {
+  const response = axios.delete(`/posts/${id}`);
+
+  return {
+    type: DELETE_POST,
+    payload: id
   };
 }

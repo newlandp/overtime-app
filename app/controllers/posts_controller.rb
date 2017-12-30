@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy, :approve]
+  skip_before_action :verify_authenticity_token, :only => :destroy
 
   def index
     @posts = Post.posts_by(current_user).page(params[:page]).per(5)
@@ -48,7 +49,6 @@ class PostsController < ApplicationController
 
   def destroy
     @post.delete
-    redirect_to posts_path
   end
 
   def approve
