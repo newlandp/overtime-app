@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :approve]
-  skip_before_action :verify_authenticity_token, :only => :destroy
+  before_action :set_post, only: [:show, :edit, :update, :update_json, :destroy, :approve]
+  skip_before_action :verify_authenticity_token, only: [:destroy, :update_json]
 
   def index
     @posts = Post.posts_by(current_user).page(params[:page]).per(5)
@@ -44,6 +44,16 @@ class PostsController < ApplicationController
       redirect_to post_path(@post.id), notice: "Post updated successfully"
     else
       render :edit
+    end
+  end
+
+  def update_json
+    authorize @post
+    if @post.update(post_params)
+      post = @post.as_json(include: :user)
+      render json: post
+    else
+      render json: @post.errors, status: :unprocessable_entity
     end
   end
 

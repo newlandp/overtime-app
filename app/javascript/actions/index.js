@@ -23,8 +23,12 @@ export function deletePost(id) {
   };
 }
 
-export function updatePost() {
+// request getting to the 
+export function updatePost(id, values, callback) {
+  const request = axios.put(`/update_post_json/${id}`, values).then(callback());
+  
   return {
-    type: UPDATE_POST
-  }
+    type: UPDATE_POST,
+    payload: request
+  };
 }

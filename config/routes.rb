@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   end
 
   get '/posts_json', to: 'posts#index_json'
+  put '/update_post_json/:id', to: 'posts#update_json'
   
   devise_for :users, skip: [:registrations]
   root to: 'static#homepage'

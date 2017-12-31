@@ -8,6 +8,11 @@ class PostPolicy < ApplicationPolicy
     return true if user_or_admin && !post_approved?
   end
 
+  def update_json?
+    return true if post_approved? && admin?
+    return true if user_or_admin && !post_approved?
+  end
+
   private
 
   def user_or_admin

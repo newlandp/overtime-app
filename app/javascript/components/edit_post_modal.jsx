@@ -45,37 +45,45 @@ class EditPostModal extends React.Component {
   }
 
   onFormSubmit(values) {
-
+    this.props.updatePost(this.props.id, values, () => {
+      this.props.close();
+    });
   }
 
   render() {
     return (
       <Modal show={this.props.showModal} onHide={this.props.close}>
-        <Modal.Body>
-          <h4>Edit Post</h4>
-          <form onSubmit={ this.props.handleSubmit(this.onFormSubmit.bind(this)) }>
-            <Field
-              name="overtime_request"
-              component={this.renderField}
-              label="Overtime Request"
-              fieldType="number"
-            />
-            <Field
-              name="date"
-              component={this.renderField}
-              label="Date"
-              fieldType="date"
-            />
-            <Field
-              name="rationale"
-              component={this.renderTextarea}
-              label="Rationale"
-            />
-          </form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={this.props.close}>Close</Button>
-        </Modal.Footer>
+        <form onSubmit={ this.props.handleSubmit(this.onFormSubmit.bind(this)) }>
+          <Modal.Body>
+            <h4>Edit Post</h4>
+              <Field
+                name="overtime_request"
+                component={this.renderField}
+                label="Overtime Request"
+                fieldType="number"
+              />
+              <Field
+                name="date"
+                component={this.renderField}
+                label="Date"
+                fieldType="date"
+              />
+              <Field
+                name="rationale"
+                component={this.renderTextarea}
+                label="Rationale"
+              />
+            
+          </Modal.Body>
+          <Modal.Footer>
+            <button className="btn btn-primary" type="submit">
+              Submit
+            </button>
+            <button onClick={this.props.close} type="button" className="btn btn-secondary">
+              Close
+            </button>
+          </Modal.Footer>
+        </form>
       </Modal>
     );
   }
@@ -84,7 +92,7 @@ class EditPostModal extends React.Component {
 function validate(values) {
   const errors = {};
 
-  if(!values.overtime_request || values.overtime_request <= 0.0) {
+  if(!values.overtime_request || values.overtime_request <= 0) {
     errors.title = "need to request a time greater than zero"
   }
 
@@ -101,20 +109,11 @@ function validate(values) {
 
 function mapStateToProps(state, ownProps) {
   return {
-    initialValues: state.posts[ownProps.post.id]
+    post: state.posts[ownProps.id]
   };
 }
 
-// connect() the reduxForm()'ed component instead of reduxForming the connect()ed component
-// do this if you want the initialValues to work
 export default connect(mapStateToProps, { updatePost })(reduxForm({
   validate,
   form: "EditPostModal"
-})(EditPostModal))
-
-
-
-
-
-
-
+})(EditPostModal));
